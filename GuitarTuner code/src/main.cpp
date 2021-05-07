@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-
 void setup() {
   // put your setup code here, to run once:
   pinMode(A5, OUTPUT);
@@ -15,7 +14,6 @@ void setup() {
   pinMode(6, OUTPUT);
   pinMode(PD2, OUTPUT);
 
-  const E = 82;
   
 // put your main code here, to run repeatedly:
   static const uint8_t pins[] = {PD2, A5, A4, A3, A2, A1, 10, 9, 8, 7, 6 };

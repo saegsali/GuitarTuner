@@ -25,8 +25,8 @@ arduinoFFT FFT = arduinoFFT(); /* Create FFT object */
 These values can be changed in order to evaluate the functions
 */
 #define CHANNEL A0
-const uint16_t samples = 64; //This value MUST ALWAYS be a power of 2
-const double samplingFrequency = 100; //Hz, must be less than 10000 due to ADC
+const uint16_t samples = 128; //This value MUST ALWAYS be a power of 2
+const double samplingFrequency = 2048; //Hz, must be less than 10000 due to ADC
 
 unsigned int sampling_period_us;
 unsigned long microseconds;
@@ -65,16 +65,16 @@ void loop()
       microseconds += sampling_period_us;
   }
   /* Print the results of the sampling according to time */
-  Serial.println("Data:");
-  PrintVector(vReal, samples, SCL_TIME);
-  FFT.Windowing(vReal, samples, FFT_WIN_TYP_HAMMING, FFT_FORWARD);	/* Weigh data */
-  Serial.println("Weighed data:");
-  PrintVector(vReal, samples, SCL_TIME);
+  //Serial.println("Data:");
+  //intVector(vReal, samples, SCL_TIME);
+  FFT.Windowing(vReal, samples, FFT_WIN_TYP_HAMMING, FFT_FORWARD); /* Weigh data */
+  //Serial.println("Weighed data:");
+  //PrintVector(vReal, samples, SCL_TIME);
   FFT.Compute(vReal, vImag, samples, FFT_FORWARD); /* Compute FFT */
-  Serial.println("Computed Real values:");
-  PrintVector(vReal, samples, SCL_INDEX);
-  Serial.println("Computed Imaginary values:");
-  PrintVector(vImag, samples, SCL_INDEX);
+  //Serial.println("Computed Real values:");
+  //PrintVector(vReal, samples, SCL_INDEX);
+  //Serial.println("Computed Imaginary values:");
+  //PrintVector(vImag, samples, SCL_INDEX);
   FFT.ComplexToMagnitude(vReal, vImag, samples); /* Compute magnitudes */
   Serial.println("Computed magnitudes:");
   PrintVector(vReal, (samples >> 1), SCL_FREQUENCY);
